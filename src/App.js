@@ -13,6 +13,7 @@ function App() {
         {/* Google Web Fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+
         <link
         href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
         rel="stylesheet"
@@ -44,7 +45,7 @@ function App() {
       style={{ width: "3rem", height: "3rem" }}
       role="status"
     >
-      <span className="sr-only">Loading...</span>
+      <span className="sr-only">Loadingggg...</span>
     </div>
   </div>
   {/* Spinner End */}
