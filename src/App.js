@@ -1,5 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
+import SearchBar from "./components/SearchBar";
 
 function App() {
   return (
@@ -35,20 +36,7 @@ function App() {
         {/* Template Stylesheet */}
         <link href="css/style.css" rel="stylesheet" />
     </Helmet>
-  {/* Spinner Start */}
-  <div
-    id="spinner"
-    className="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
-  >
-    <div
-      className="spinner-border text-primary"
-      style={{ width: "3rem", height: "3rem" }}
-      role="status"
-    >
-      <span className="sr-only">Loadingggg...</span>
-    </div>
-  </div>
-  {/* Spinner End */}
+
   {/* Topbar Start */}
   <div className="container-fluid px-5 d-none border-bottom d-lg-block">
     <div className="row gx-0 align-items-center">
@@ -185,52 +173,7 @@ function App() {
           </a>
         </div>
       </div>
-      <div className="col-md-4 col-lg-6 text-center">
-        <div className="position-relative ps-4">
-          <div className="d-flex border rounded-pill">
-            <form
-              action="/search"
-              method="get"
-              className="d-flex border rounded-pill align-items-center"
-            >
-              <input
-                className="form-control border-0 rounded-pill w-100 py-3"
-                type="text"
-                name="keyword"
-                placeholder="찾고 싶은 상품을 검색해 보세요!"
-              />
-              <select
-                className="form-select text-dark border-0 border-start rounded-0 p-3"
-                style={{ width: 200 }}
-              >
-                <option value="All Category">전체</option>
-                <option value="Pest Control-2">패션의류/잡화</option>
-                <option value="Pest Control-3">뷰티</option>
-                <option value="Pest Control-4">출산/유아동</option>
-                <option value="Pest Control-5">식품</option>
-                <option value="Pest Control-6">주방용품</option>
-                <option value="Pest Control-7">생활용품</option>
-                <option value="Pest Control-8">홈인테리어</option>
-                <option value="Pest Control-9">가전디지털</option>
-                <option value="Pest Control-10">스포츠/레저</option>
-                <option value="Pest Control-5">자동차용품</option>
-                <option value="Pest Control-5">도서/음반/DVD</option>
-                <option value="Pest Control-5">완구/취미</option>
-                <option value="Pest Control-5">문구/오피스</option>
-                <option value="Pest Control-5">반려동물용품</option>
-                <option value="Pest Control-5">헬스/건강식품</option>
-              </select>
-              <button
-                type="submit"
-                className="btn btn-primary rounded-pill py-3 px-5"
-                style={{ border: 0 }}
-              >
-                <i className="fas fa-search" />
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
+      <SearchBar />
       <div className="col-md-4 col-lg-3 text-center text-lg-end">
         <div className="d-inline-flex align-items-center">
           <a
