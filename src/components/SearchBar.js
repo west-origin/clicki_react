@@ -1,17 +1,18 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function SearchBar() {
     const [keyword, setKeyword] = useState("");
     const [category, setCategory] = useState("전체");
-
+    const navigate = useNavigate();
     const handleSearch = async () => {
         try {
           const response = await axios.get("http://localhost:8080/api/search", {
             params: { keyword, category },
           });
-
           console.log("검색 결과:", response.data);
+          navigate("/shop"); // Shop 페이지로 이동
         } catch (error) {
           console.error("검색 요청 실패:", error);
         }
