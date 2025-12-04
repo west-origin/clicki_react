@@ -29,12 +29,12 @@ function SearchBar() {
             </Helmet>
 
             <div className="col-md-4 col-lg-6 text-center">
-                <div class="position-relative ps-4">
-                    <div class="d-flex border rounded-pill">
-                        <input class="form-control border-0 rounded-pill w-100 py-3" type="text" data-bs-target="#dropdownToggle123" placeholder="찾고 싶은 상품을 검색해 보세요!"
+                <div className="position-relative ps-4">
+                    <div className="d-flex border rounded-pill">
+                        <input className="form-control border-0 rounded-pill w-100 py-3" type="text" data-bs-target="#dropdownToggle123" placeholder="찾고 싶은 상품을 검색해 보세요!"
                         value={keyword} onChange={(e) => setKeyword(e.target.value)}/>
 
-                        <select class="form-select text-dark border-0 border-start rounded-0 p-3" style={{width: 200}}>
+                        <select className="form-select text-dark border-0 border-start rounded-0 p-3" style={{width: 200}}>
                             <option value="All Category">전체</option>
                             <option value="Pest Control-2">패션의류/잡화</option>
                             <option value="Pest Control-3">뷰티</option>

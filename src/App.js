@@ -5,12 +5,14 @@ import Shop from "./pages/Shop";
 
 function App() {
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Main />} />
-                <Route path="/shop" element={<Shop />} />
-            </Routes>
-        </BrowserRouter>
+        <>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Main />} />
+                    <Route path="/shop" element={<Shop />} />
+                </Routes>
+            </BrowserRouter>
+        </>
     );
 }
 

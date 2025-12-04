@@ -1,9 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import SearchBar from "../components/SearchBar";
-import "../lib/owlcarousel/assets/owl.carousel.min.css";
-import "../lib/animate/animate.min.css";
-import "../lib/wow/wow.min.js";
+
 function Main() {
   return (
     <>
