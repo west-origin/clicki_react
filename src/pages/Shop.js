@@ -1,8 +1,12 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import SearchBar from "../components/SearchBar";
+import { useLocation } from "react-router-dom";
+
 
 function Main() {
+     const location = useLocation();
+     const products = location.state?.products || [];
 
   return (
 <>
@@ -970,9 +974,9 @@ function Main() {
                           <div className="product-item-inner border rounded">
                             <div className="product-item-inner-item">
                               <img
-                                src="{item.img}"
+                                src= {item.img}
                                 className="img-fluid w-100 rounded-top"
-                                alt="#####"
+                                alt={item.prdNm}
                               />
                               <div className="product-new">New</div>
                               <div className="product-details">
@@ -983,13 +987,13 @@ function Main() {
                             </div>
                             <div className="text-center rounded-bottom p-4">
                               <a href="#" className="d-block mb-2">
-                                {item.category}
+                                {item.ctgrNm}
                               </a>
                               <a href="#" className="d-block h4">
-                                {item.name} <br /> G2356
+                                {item.prdNm} <br />
                               </a>
-                              <del className="me-2 fs-5">{item.price}</del>
-                              <span className="text-primary fs-5">{item.salePrice}</span>
+                              <del className="me-2 fs-5">{item.prdPrc}원</del>
+                              <span className="text-primary fs-5">{(item.prdPrc * (1 - item.prdSl / 100)).toLocaleString()}원</span>
                             </div>
                           </div>
                           <div className="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">

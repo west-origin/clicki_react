@@ -13,7 +13,9 @@ function SearchBar() {
             params: { keyword, category },
           });
           console.log("검색 결과:", response.data);
-          navigate("/shop"); // Shop 페이지로 이동
+            navigate("/shop", {
+                state: { products: response.data }
+            });
         } catch (error) {
           console.error("검색 요청 실패:", error);
         }
