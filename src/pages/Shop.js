@@ -5,9 +5,9 @@ import { useLocation } from "react-router-dom";
 
 
 function Main() {
-     const location = useLocation();
-     const products = location.state?.products || [];
-
+    const location = useLocation();
+    const products = location.state?.products || [];
+    const BASE_URL = "http://localhost:8080";
   return (
 <>
     <Helmet>
@@ -845,11 +845,11 @@ function Main() {
                 }}
               >
                 <a href="#">
-                  <h5 className="display-6 text-primary">SALE</h5>
-                  <h4 className="text-secondary">Get UP To 50% Off</h4>
+                  <h5 className="display-6 text-primary">세일 중</h5>
+                  <h4 className="text-secondary">최대 50% 할인</h4>
                 </a>
                 <a href="#" className="btn btn-primary rounded-pill px-4">
-                  Shop Now
+                  쇼핑하러 가기
                 </a>
               </div>
             </div>
@@ -907,10 +907,10 @@ function Main() {
                   background: "rgba(242, 139, 0, 0.3)"
                 }}
               >
-                <h4 className="display-5 text-primary">SALE</h4>
-                <h3 className="display-4 text-white mb-4">Get UP To 50% Off</h3>
+                <h4 className="display-5 text-primary">세일 중</h4>
+                <h3 className="display-4 text-white mb-4">최대 50% 할인</h3>
                 <a href="#" className="btn btn-primary rounded-pill">
-                  Shop Now
+                  쇼핑하러 가기
                 </a>
               </div>
             </div>
@@ -974,7 +974,7 @@ function Main() {
                           <div className="product-item-inner border rounded">
                             <div className="product-item-inner-item">
                               <img
-                                src= {item.img}
+                                src= {`${BASE_URL}${item.imagePath}`}
                                 className="img-fluid w-100 rounded-top"
                                 alt={item.prdNm}
                               />
@@ -1826,7 +1826,7 @@ function Main() {
                   href="#"
                   className="btn btn-primary rounded-pill align-self-start py-2 px-4"
                 >
-                  Shop Now
+                  쇼핑하러 가기
                 </a>
               </div>
             </div>
@@ -1846,14 +1846,14 @@ function Main() {
                 style={{ background: "rgba(242, 139, 0, 0.5)" }}
               >
                 <a href="#">
-                  <h2 className="display-2 text-secondary">SALE</h2>
-                  <h4 className="display-5 text-white mb-4">Get UP To 50% Off</h4>
+                  <h2 className="display-2 text-secondary">세일 중</h2>
+                  <h4 className="display-5 text-white mb-4">최대 50% 할인</h4>
                 </a>
                 <a
                   href="#"
                   className="btn btn-secondary rounded-pill align-self-center py-2 px-4"
                 >
-                  Shop Now
+                  쇼핑하러 가기
                 </a>
               </div>
             </div>
