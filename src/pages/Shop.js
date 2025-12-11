@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import Topbar from "../components/layout/Topbar"
 import { useLocation } from "react-router-dom";
-
+import Pagination from "../components/common/Pagination";
 
 function Main() {
     const location = useLocation();
     const products = location.state?.products || [];
     const BASE_URL = "http://localhost:8080";
+    const [currentPage, setCurrentPage] = useState(1);
   return (
 <>
     <Helmet>
@@ -664,34 +665,11 @@ function Main() {
                         </div>
                       </div>
                     ))}
-                  <div className="col-12 wow fadeInUp" data-wow-delay="0.1s">
-                    <div className="pagination d-flex justify-content-center mt-5">
-                      <a href="#" className="rounded">
-                        «
-                      </a>
-                      <a href="#" className="active rounded">
-                        1
-                      </a>
-                      <a href="#" className="rounded">
-                        2
-                      </a>
-                      <a href="#" className="rounded">
-                        3
-                      </a>
-                      <a href="#" className="rounded">
-                        4
-                      </a>
-                      <a href="#" className="rounded">
-                        5
-                      </a>
-                      <a href="#" className="rounded">
-                        6
-                      </a>
-                      <a href="#" className="rounded">
-                        »
-                      </a>
-                    </div>
-                  </div>
+                    <Pagination
+                      totalPages={6}
+                      currentPage={currentPage}
+                      onPageChange={(page) => setCurrentPage(page)}
+                    />
                 </div>
               </div>
               <div id="tab-6" className="products tab-pane fade show p-0">
@@ -1392,34 +1370,7 @@ function Main() {
                       </div>
                     </div>
                   </div>
-                  <div className="col-12 wow fadeInUp" data-wow-delay="0.1s">
-                    <div className="pagination d-flex justify-content-center mt-5">
-                      <a href="#" className="rounded">
-                        «
-                      </a>
-                      <a href="#" className="active rounded">
-                        1
-                      </a>
-                      <a href="#" className="rounded">
-                        2
-                      </a>
-                      <a href="#" className="rounded">
-                        3
-                      </a>
-                      <a href="#" className="rounded">
-                        4
-                      </a>
-                      <a href="#" className="rounded">
-                        5
-                      </a>
-                      <a href="#" className="rounded">
-                        6
-                      </a>
-                      <a href="#" className="rounded">
-                        »
-                      </a>
-                    </div>
-                  </div>
+
                 </div>
               </div>
             </div>

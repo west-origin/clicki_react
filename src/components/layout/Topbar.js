@@ -12,13 +12,10 @@ const Topbar = () => {
                 <a href="#" className="text-muted me-2">{" "}Help</a>
                 <small> / </small>
                 <a href="#" className="text-muted mx-2">{" "}Support</a>
-                <small> / </small>
-                <a href="#" className="text-muted ms-2">{" "}Contact</a>
             </div>
         </div>
         <div className="col-lg-4 text-center d-flex align-items-center justify-content-center">
-            <small className="text-dark">Call Us:</small>
-            <a href="#" className="text-muted">(+012) 1234 567890</a>
+            <small className="text-dark">Contact Me: mrkiwonseo@gmail.com</small>
         </div>
       <div className="col-lg-4 text-center text-lg-end">
         <div
