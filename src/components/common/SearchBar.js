@@ -5,22 +5,17 @@ import { Helmet } from "react-helmet";
 
 function SearchBar() {
     const [keyword, setKeyword] = useState("");
-    const [category, setCategory] = useState("전체");
-    const navigate = useNavigate();
-    const handleSearch = async () => {
-        try {
-          const response = await axios.get("http://localhost:8080/api/search", {
-            params: { keyword, category },
-          });
-          console.log("검색 결과:", response.data);
-            navigate("/shop", {
-                state: { products: response.data }
-            });
-        } catch (error) {
-          console.error("검색 요청 실패:", error);
-        }
-    };
+        const [category, setCategory] = useState("전체"); // 기본값을 "전체"로 설정
+        const navigate = useNavigate();
 
+        const handleSearch = () => {
+            navigate("/shop", {
+                state: {
+                    keyword: keyword,
+                    category: category
+                }
+            });
+        };
     return (
         <>
             <Helmet>

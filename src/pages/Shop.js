@@ -2,13 +2,57 @@ import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import Topbar from "../components/layout/Topbar"
 import { useLocation } from "react-router-dom";
-import Pagination from "../components/common/Pagination";
+import axios from "axios";
+import Pagination from "react-js-pagination";
+import "./Paging.css";
 
 function Main() {
     const location = useLocation();
-    const products = location.state?.products || [];
+
+    // 1. SearchBar에서 전달받은 검색 조건 (없으면 기본값 사용)
+    const { keyword, category } = location.state || { keyword: "", category: "전체" };
+
+    // 2. 상태 관리
+    const [products, setProducts] = useState([]);      // 데이터 리스트
+    const [currentPage, setCurrentPage] = useState(1);  // 현재 페이지
+    const [totalElements, setTotalElements] = useState(0); // 전체 데이터 개수
+
+    const itemsPerPage = 10; // 한 페이지에 보여줄 아이템 수
     const BASE_URL = "http://localhost:8080";
-    const [currentPage, setCurrentPage] = useState(1);
+
+    // 3. 서버에서 데이터를 가져오는 함수 (useCallback으로 최적화)
+    const fetchProducts = useCallback(async (pageNumber) => {
+        try {
+            const response = await axios.get(`${BASE_URL}/api/search`, {
+                params: {
+                    keyword: keyword,
+                    category: category,
+                    page: pageNumber - 1, // 서버(Spring)가 0부터 시작한다면 -1
+                    size: itemsPerPage
+                }
+            });
+
+            // 서버 응답 구조가 Page 객체일 경우 (content, totalElements 포함)
+            setProducts(response.data.content || []);
+            setTotalElements(response.data.totalElements || 0);
+        } catch (error) {
+            console.error("데이터 로드 실패:", error);
+        }
+    }, [keyword, category]);
+
+    // 4. 페이지가 로드되거나 검색 조건이 바뀔 때 실행
+    useEffect(() => {
+        setCurrentPage(1); // 검색 조건이 바뀌면 1페이지로 리셋
+        fetchProducts(1);
+    }, [keyword, category, fetchProducts]);
+
+    // 5. 페이지 변경 핸들러
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
+        fetchProducts(pageNumber); // 변경된 페이지의 데이터 요청
+        window.scrollTo(0, 0);      // 페이지 이동 시 상단으로 스크롤
+    };
+
   return (
 <>
     <Helmet>
