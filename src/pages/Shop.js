@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { Helmet } from "react-helmet";
+//import { Helmet, HelmetProvider } from "react-helmet-async";
 import Topbar from "../components/layout/Topbar"
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import Pagination from "react-js-pagination";
-import "./Paging.css";
+import ReactPaginate from 'react-paginate';
+import Pagination from "../components/common/Pagination"
 
 function Main() {
     const location = useLocation();
@@ -14,24 +15,23 @@ function Main() {
 
     // 2. 상태 관리
     const [products, setProducts] = useState([]);      // 데이터 리스트
-    const [currentPage, setCurrentPage] = useState(1);  // 현재 페이지
+    const [currentPage, setCurrentPage] = useState(0);  // 현재 페이지
     const [totalElements, setTotalElements] = useState(0); // 전체 데이터 개수
 
-    const itemsPerPage = 10; // 한 페이지에 보여줄 아이템 수
+    const itemsPerPage = 9; // 한 페이지에 보여줄 아이템 수
     const BASE_URL = "http://localhost:8080";
 
     // 3. 서버에서 데이터를 가져오는 함수 (useCallback으로 최적화)
-    const fetchProducts = useCallback(async (pageNumber) => {
+    const fetchProducts = useCallback(async (pageIndex) => {
         try {
             const response = await axios.get(`${BASE_URL}/api/search`, {
                 params: {
                     keyword: keyword,
                     category: category,
-                    page: pageNumber - 1, // 서버(Spring)가 0부터 시작한다면 -1
+                    page: pageIndex, // 서버(Spring)가 0부터 시작한다면 -1
                     size: itemsPerPage
                 }
             });
-
             // 서버 응답 구조가 Page 객체일 경우 (content, totalElements 포함)
             setProducts(response.data.content || []);
             setTotalElements(response.data.totalElements || 0);
@@ -42,16 +42,20 @@ function Main() {
 
     // 4. 페이지가 로드되거나 검색 조건이 바뀔 때 실행
     useEffect(() => {
-        setCurrentPage(1); // 검색 조건이 바뀌면 1페이지로 리셋
-        fetchProducts(1);
+        setCurrentPage(0); // 검색 조건이 바뀌면 1페이지로 리셋
+        fetchProducts(0);
     }, [keyword, category, fetchProducts]);
 
     // 5. 페이지 변경 핸들러
-    const handlePageChange = (pageNumber) => {
-        setCurrentPage(pageNumber);
-        fetchProducts(pageNumber); // 변경된 페이지의 데이터 요청
+    const handlePageChange = (selectedItem) => {
+        const selectedPage = selectedItem.selected;
+        setCurrentPage(selectedPage);
+        fetchProducts(selectedPage); // 변경된 페이지의 데이터 요청
         window.scrollTo(0, 0);      // 페이지 이동 시 상단으로 스크롤
     };
+    // 전체 페이지 수 계산
+    //const pageCount = Math.ceil(totalElements / itemsPerPage);
+    const totalPages = Math.ceil(totalElements / itemsPerPage);
 
   return (
 <>
@@ -709,11 +713,21 @@ function Main() {
                         </div>
                       </div>
                     ))}
-                    <Pagination
-                      totalPages={6}
-                      currentPage={currentPage}
-                      onPageChange={(page) => setCurrentPage(page)}
-                    />
+                    <div>
+                            {/* 상품 리스트 렌더링 */}
+                            {products.map(product => (
+                                <div key={product.id}>{product.name}</div>
+                            ))}
+
+                            {/* 2. 수정된 Pagination 컴포넌트 호출 */}
+                            {totalElements > 0 && (
+                                <Pagination
+                                    totalPages={totalPages}
+                                    currentPage={currentPage} // 이미 0부터 관리되는 상태값
+                                    onPageChange={handlePageChange} // 앞에서 만든 핸들러 함수 전달
+                                />
+                            )}
+                        </div>
                 </div>
               </div>
               <div id="tab-6" className="products tab-pane fade show p-0">
