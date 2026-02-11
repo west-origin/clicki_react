@@ -1,5 +1,6 @@
 import React from "react";
 import SearchBar from "../common/SearchBar.js"
+import { Link } from "react-router-dom";
 
 const Topbar = () => {
     return (
@@ -114,13 +115,13 @@ const Topbar = () => {
                 <div className="row gx-0 align-items-center text-center">
                     <div className="col-md-4 col-lg-3 text-center text-lg-start">
                         <div className="d-inline-flex align-items-center">
-                            <a href="" className="navbar-brand p-0">
+                            <Link to="/" className="navbar-brand p-0">
                                 <h1 className="display-5 text-primary m-0">
                                     <i className="fas fa-shopping-bag text-secondary me-2"/>
                                     Clicki
                                 </h1>
                                 {/* <img src="img/logo.png" alt="Logo"> */}
-                            </a>
+                            </Link>
                         </div>
                     </div>
                     <SearchBar/>
