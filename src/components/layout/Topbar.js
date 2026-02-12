@@ -225,15 +225,15 @@ const Topbar = () => {
                             </button>
                             <div className="collapse navbar-collapse" id="navbarCollapse">
                                 <div className="navbar-nav ms-auto py-0">
-                                    <a href="http://localhost:3000" className="nav-item nav-link active">
+                                    <Link to="/" className="nav-item nav-link active">
                                         Home
-                                    </a>
-                                    <a href="http://localhost:3000/shop" className="nav-item nav-link">
+                                    </Link>
+                                    <Link to="/shop" className="nav-item nav-link">
                                         Shop
-                                    </a>
-                                    <a href="single.html" className="nav-item nav-link">
+                                    </Link>
+                                    <Link to="/single" className="nav-item nav-link">
                                         Single Page
-                                    </a>
+                                    </Link>
                                     <div className="nav-item dropdown">
                                         <a
                                                 href="#"

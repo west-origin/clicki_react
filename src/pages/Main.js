@@ -2742,8 +2742,6 @@ function Main() {
             </div>
             {/* Bestseller Products End */}
             <Footer/>
-            {/* JavaScript Libraries */}
-            {/* Template Javascript */}
         </>
     );
 }
